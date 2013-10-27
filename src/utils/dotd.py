@@ -44,7 +44,7 @@ class DealOfTheDay(object):
 		#only post the dotd if the bot hasn't posted it yet
 		if not self.is_duplicate(title):
 			try:
-				#self.reddit.submit(SUBREDDIT, title, url=link, raise_captcha_exception=True)
+				self.reddit.submit(SUBREDDIT, title, url=link, raise_captcha_exception=True)
 				msg = 'Post submitted. Title: %s - Link: %s' % (title, link)
 				msg_type = Logger.MSG_TYPES['success']
 			except praw.errors.InvalidCaptcha as e:
