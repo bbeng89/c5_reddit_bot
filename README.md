@@ -10,6 +10,6 @@ __Todo__
 * exception handling
 
 __Libraries Used__
-*PRAW - https://github.com/praw-dev/praw
-*Requests - https://github.com/kennethreitz/requests
-*Beautiful Soup - http://www.crummy.com/software/BeautifulSoup/
+* PRAW - https://github.com/praw-dev/praw
+* Requests - https://github.com/kennethreitz/requests
+* Beautiful Soup - http://www.crummy.com/software/BeautifulSoup/
