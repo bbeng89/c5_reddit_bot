@@ -1,4 +1,4 @@
-# concrete5 Deal of the Day Reddit Bot #
+## concrete5 Deal of the Day Reddit Bot ##
 
 This is a simple python script that pulls the deal of the day from http://www.concrete5.org/marketplace/deal/ 
 and posts it to http://reddit.com/r/concrete5.
