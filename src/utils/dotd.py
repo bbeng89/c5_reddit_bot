@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 from datetime import date
 import time
+import feedparser
 from bot_settings import SUBREDDIT
 from logger import Logger
 
@@ -104,3 +105,23 @@ class DealOfTheDayHtml(DealOfTheDay):
 				p = h2.find_next_sibling('p')
 				price_str = p.string
 		return price_str
+
+
+class DealOfTheDayRss(DealOfTheDay):
+	"""
+	Parses out the concrete5.org deal of the day from the RSS feed.
+	"""
+
+	def __init__(self, reddit, logger):
+		self.DOTD_URL = 'http://www.concrete5.org/marketplace/deal/'
+		self.RSS_URL = 'http://www.concrete5.org/marketplace/deal/-/rss'
+		super(DealOfTheDayRss, self).__init__(reddit, logger)
+
+	def get(self):
+		feed = feedparser.parse(self.RSS_URL)
+		title = '[DotD] %s: ' % date.today().strftime('%m/%d/%Y')
+		deal_title = feed["items"][0]["title"]
+		soup = BeautifulSoup(feed["items"][0]["summary"])
+		desc = ''.join(soup.findAll(text=True))
+		title += '%s - %s' % (deal_title, ' '.join(desc.split()))
+		return title
